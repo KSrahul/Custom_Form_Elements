@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom_Form_Elements</title>
+    <style>
+                body{
+            padding: 0;
+            width: 600px;
+            margin: 40px auto;
+        }
+        .def_check,
+        .def_radio{
+            opacity: 0;
+            position: absolute;
+            top: 0;
+        }
+        .label_check,
+        .label_radio{
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+        }
+        .check{
+            width: 20px;
+            height: 20px;
+            background-color: #d4d3d3;
+            margin-right: 10px;
+            border-radius: 4px;
+            position: relative;
+        }
+        .check::before{
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: #26a69a;
+            width: 100%;
+            height: 100%;
+            transform: scale(0);
+            transition: 0.4s;
+            border-radius: 4px;
+        }
+        .check::after{
+            content: "";
+            position: absolute;
+            width: 5px;
+            height: 10px;
+            border: solid #ffffff;
+            border-width: 0 2px 2px 0;
+            transform: scale(0);
+            left: 50%;
+            top: 42%;
+            transition: transform 0.4s;
+        }
+        .def_check:checked + .check::before{
+            transform: scale(1);
+        }
+        .def_check:checked + .check::after{
+            transform: translate(-50%, -50%)rotate(45deg);
+        }
+        .flex{
+            display: flex;
+        }
+        .custom_container{
+            justify-content: space-between;
+            padding-bottom: 40px;
+        }
+        /* radion */
+        .radio {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            position: relative;
+            border: 2px solid #5a5a5a;
+            border-radius: 50%;
+        }
+        .def_radio:checked + .radio{
+            border: 2px solid #26a69a;
+        }
+        .radio::before{
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 75%;
+            height: 75%;
+            background-color: #26a69a;
+            border-radius: 50%;
+            transform: translate(-50%, -50%)scale(0);
+            transition: 0.4s;
+        }
+        .def_radio:checked + .radio::before{
+            transform: translate(-50%, -50%)scale(1);
+        }
+        .check_box,
+        .radio_btn,
+        .file_upload{
+            font-size: 28px;
+            color: cornflowerblue;
+        }
+        .upload_input{
+            display: none;
+        }
+        .upload_container{
+            background-color: #c0392b;
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            align-items: center;
+        }
+        .upload_btn{
+            background-color: #962d22;
+            border: none;
+            color: #fff;
+            padding: 14px 20px;
+            text-transform: uppercase;
+            outline: none;
+            cursor: pointer;
+        }
+        .file_name{
+            color: #fff;
+            padding: 0px 13px;
+        }
+        /* radion (end)*/
+    </style>
+</head>
+<body>
+          <h1 class="check_box">Custom Checkbox</h1>
+    <div class="flex custom_container">
+        <label class="label_check">
+            <input class="def_check" type="checkbox" name="" id="">
+            <div class="check"></div>
+            check1
+        </label>
+        <label class="label_check">
+            <input class="def_check" type="checkbox" name="" id="">
+            <div class="check"></div>
+            check2
+        </label>
+        <label class="label_check">
+            <input class="def_check" type="checkbox" name="" id="">
+            <div class="check"></div>
+            check3
+        </label>
+        <label class="label_check">
+            <input class="def_check" type="checkbox" name="" id="">
+            <div class="check"></div>
+            check4
+        </label>
+    </div>
+
+    <h1 class="radio_btn">Custom Radio Button</h1>
+    <div class="flex custom_container">
+        <label class="label_radio">
+            <input class="def_radio" type="radio" name="radio" id="">
+            <div class="radio"></div>
+            radio1
+        </label>
+        <label class="label_radio">
+            <input class="def_radio" type="radio" name="radio" id="">
+            <div class="radio"></div>
+            radio2
+        </label>
+        <label class="label_radio">
+            <input class="def_radio" type="radio" name="radio" id="">
+            <div class="radio"></div>
+            radio3
+        </label>
+        <label class="label_radio">
+            <input class="def_radio" type="radio" name="radio" id="">
+            <div class="radio"></div>
+            radio4
+        </label>
+    </div>
+
+
+    <h1 class="file_upload">Custom file upload</h1>
+    <div class="upload_container">
+        <span class="file_name">File Name</span>
+        <input class="upload_input" type="file" name="" id="">
+        <button class="upload_btn">Upload a file</button>
+    </div>
+    
+    
+    
+    <script>
+        window.onload = function(){
+            document.querySelector(".upload_btn").onclick = function(){
+                document.querySelector(".upload_input").click();
+            }
+            document.querySelector(".upload_input").onchange = function(){
+                document.querySelector(".file_name").innerHTML = this.value.substring(12);
+            }
+        }
+    </script>
+</body>
+</html>
